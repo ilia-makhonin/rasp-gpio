@@ -20,12 +20,6 @@ while(1):
     for channel in adc_channels:
         # read value from ADC input
         bus.write_byte(DEV_ADDR, adc_channels[channel])
-        bus.read_byte(DEV_ADDR) # read last value
-        bus.read_byte(DEV_ADDR) # repeat reading last value
         value = bus.read_byte(DEV_ADDR)
-        if channel == 'AIN3':
-            tmp = value
-        print 'Channel ' + channel + ' ---> ' + str(value)
-    # set value in DAC
-    bus.write_byte_data(DEV_ADDR, dac_channel, tmp)
+        print ('Channel ' + channel + ' ---> ' + str(value))
     time.sleep(0.1)
